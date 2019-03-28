@@ -1,0 +1,7 @@
+/home/djn/Documents/doc_sync/CodeSpace/coreutils_cpp/build/CMakeFiles/install/strip.dir
+/home/djn/Documents/doc_sync/CodeSpace/coreutils_cpp/build/CMakeFiles/edit_cache.dir
+/home/djn/Documents/doc_sync/CodeSpace/coreutils_cpp/build/CMakeFiles/coreutils_cpp.dir
+/home/djn/Documents/doc_sync/CodeSpace/coreutils_cpp/build/CMakeFiles/rebuild_cache.dir
+/home/djn/Documents/doc_sync/CodeSpace/coreutils_cpp/build/CMakeFiles/list_install_components.dir
+/home/djn/Documents/doc_sync/CodeSpace/coreutils_cpp/build/CMakeFiles/install/local.dir
+/home/djn/Documents/doc_sync/CodeSpace/coreutils_cpp/build/CMakeFiles/install.dir

@@ -1,0 +1,111 @@
+/*
+class byte_stream
+{
+public:
+    friend void
+    swap(byte_stream& lhs, byte_stream& rhs)
+    {
+        std::swap(lhs._bytes, rhs._bytes);
+        std::swap(lhs._len, rhs._len);
+        std::swap(lhs._capacity, rhs._capacity);
+    }
+    
+    byte_stream() : _bytes{nullptr}, _len{0}, _capacity{0}
+    {}
+    
+    byte_stream(unsigned char *__bytes, size_t __len, size_t __capacity) 
+    : _bytes{__bytes}, _len{__len}, _capacity{__capacity}
+    {}
+    
+    byte_stream(size_t __len)
+    {
+        _len = __len;
+        _capacity = _len;
+        _bytes = new unsigned char[__len];
+    }
+    
+    byte_stream(const byte_stream& __other) 
+    : _bytes{__other._capacity ? new unsigned char[__other._capacity] : nullptr}, 
+    _len{__other._len}, _capacity{__other._capacity}
+    {
+        if (_bytes != nullptr)
+            std::copy(__other._bytes, __other._bytes + _len, _bytes);
+    }
+    
+    byte_stream(byte_stream&& __other) : byte_stream{}
+    {
+        swap(*this, __other);
+    }
+    
+    byte_stream&
+    operator=(const byte_stream& __rhs)
+    {
+        byte_stream tmp{__rhs};
+        
+        swap(*this, tmp);
+        
+        return *this;
+    }
+    
+    byte_stream&
+    operator=(byte_stream& __rhs)
+    {
+        swap(*this, __rhs);
+        
+        return *this;
+    }
+    
+    ~byte_stream()
+    {
+        delete[] _bytes;    
+    }
+    
+    bool
+    operator==(const byte_stream& __rhs) const
+    {
+        return std::memcmp(_bytes, __rhs._bytes, _len);
+    }
+    
+    unsigned char
+    operator[](size_t __elm_pos) const 
+    {
+        return _bytes[__elm_pos];
+    }
+    
+    unsigned char&
+    operator[](size_t __elm_pos)
+    {
+        return _bytes[__elm_pos];
+    }
+    
+    friend std::ostream&
+    operator<<(byte_stream& stream ,std::ostream& out)
+    {
+        out << "0x";
+        out.setf(std::ios::hex);
+        for (size_t i = 0; i < stream._len; i++) {
+            out << stream[i];
+        }
+        out.unsetf(std::ios::hex);
+        
+        return out;
+    }
+    
+    friend std::istream&
+    operator>>(byte_stream& stream, std::istream& in)
+    {
+        unsigned char byte;
+        
+        in >> byte;
+        
+        if (_capacity <= _len) {
+            unsigned char *bytes_tmp = realloc()
+        }
+    }
+    
+private:
+    unsigned char *_bytes;
+    size_t _len;
+    size_t _capacity;
+};
+*/
