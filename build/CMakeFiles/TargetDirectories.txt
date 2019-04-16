@@ -1,2 +1,0 @@
-/home/djn-pc/Documents/doc_sync/CodeSpace/coreutils_cpp/build/CMakeFiles/rebuild_cache.dir
-/home/djn-pc/Documents/doc_sync/CodeSpace/coreutils_cpp/build/CMakeFiles/edit_cache.dir
