@@ -16,41 +16,17 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <https://www.gnu.org/licenses/>.
 */
+#include <cstddef>
 
-#pragma once
-
-#include <unistd.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-
-#include <string>
-
-class file_stat
+#include <limits.h>
+class limits_wrapper
 {
-public:
-    file_stat();
-    
-    ~file_stat();
-    
-    file_stat(const std::string& pathname);
-    
-    file_stat(const struct stat stat);
-    
-    file_stat(const int fd);
-    
-    const ino_t inode_num() const;
-    const dev_t device_num() const;
-private:
-    struct stat _stat;
-    
-}
+    public:
 
-inline file_stat::inode_num() const
-{
-    return _stat.st_ino;
-}
+        static constexpr
+        path_max(void) const 
+        {
+            return PATH_MAX;
+        }
 
-inline file_stat::device_num() const
-{
-    return _stat.st_dev;
 }

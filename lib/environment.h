@@ -17,40 +17,23 @@
     along with Foobar.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#pragma once
-
-#include <unistd.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-
+#include <cstdlib>
 #include <string>
 
-class file_stat
-{
-public:
-    file_stat();
-    
-    ~file_stat();
-    
-    file_stat(const std::string& pathname);
-    
-    file_stat(const struct stat stat);
-    
-    file_stat(const int fd);
-    
-    const ino_t inode_num() const;
-    const dev_t device_num() const;
-private:
-    struct stat _stat;
-    
-}
+using std::string;
 
-inline file_stat::inode_num() const
+class environment
 {
-    return _stat.st_ino;
-}
+    public:
+        environment();
 
-inline file_stat::device_num() const
-{
-    return _stat.st_dev;
+        // POSIX.1
+        const string& pwd() const;
+        string& pwd();
+
+        const string& path() const;
+        string& path();
+    private:
+        string pwd;
+        string path;
 }

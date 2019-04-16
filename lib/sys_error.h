@@ -16,41 +16,44 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <https://www.gnu.org/licenses/>.
 */
+#include <stdexcept>
 
-#pragma once
+#include <cerrno>
+#include <cstring> 
 
-#include <unistd.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-
-#include <string>
-
-class file_stat
+class sys_error : public std::exception
 {
-public:
-    file_stat();
-    
-    ~file_stat();
-    
-    file_stat(const std::string& pathname);
-    
-    file_stat(const struct stat stat);
-    
-    file_stat(const int fd);
-    
-    const ino_t inode_num() const;
-    const dev_t device_num() const;
-private:
-    struct stat _stat;
-    
+    public:
+        sys_error(int errnum = 0);
+
+        const char* what() const noexcept;
+
+        const int errnum() const;
+
+        int& errnum();
+    private:
+        int error_number;
 }
 
-inline file_stat::inode_num() const
+inline sys_error::sys_error(int errnum)
 {
-    return _stat.st_ino;
+    error_number = errnum;
 }
 
-inline file_stat::device_num() const
+inline const char* 
+sys_error::what() noexcept
 {
-    return _stat.st_dev;
+    return strerror(error_number);
+}
+
+inline const int
+sys_error::errnum() const
+{
+    return error_number;
+}
+
+inline int&
+sys_error::errnum()
+{
+    return error_number;
 }

@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/coreutils_cpp.dir/main.cpp.o  -o coreutils_cpp 
