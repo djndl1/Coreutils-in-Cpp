@@ -16,16 +16,17 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <https://www.gnu.org/licenses/>.
 */
+
+#include "limits_wrapper.h"
+#include "sys_error.h"
+#include "file_stat.h"
+#include "environment.h"
 #include <string>
 
 #include <unistd.h>
 #include <errno.h>
 #include <vector>
 
-#include "limits_wrapper.h"
-#include "sys_error.h"
-#include "file_stat.h"
-#include "environment.h"
 
 using std::string;
 using std::vector;
@@ -33,7 +34,7 @@ using std::out_of_range;
 
 string cxx_getcwd(void)
 {
-    char *cwd[limits_wrapper::path_max()];
+    char cwd[limits_wrapper::path_max()];
 
     char *result = getcwd(cwd, limits_wrapper::path_max());
     if (result == NULL && errno != 0)
@@ -45,8 +46,7 @@ string cxx_getcwd(void)
 string pwd(vector<string> args)
 {
     string pwd = cxx_getcwd();
-    environment cur_env{};
-    string pwd_env = cur_env.pwd();
+    string pwd_env = environment::get_env().get_pwd();
 
     // if logical path is pecified "-P"
     bool logical_flag = true;

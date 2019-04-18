@@ -17,7 +17,8 @@
     along with Foobar.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <cstdlib>
+#pragma once
+
 #include <string>
 
 using std::string;
@@ -25,15 +26,23 @@ using std::string;
 class environment
 {
     public:
-        environment();
+        static environment& get_env();
+
+        // these constructors and assignment operators are not needed for a singleton
+        environment(const environment&) = delete;
+        environment(environment&&) = delete;
+        environment& operator=(const environment&) = delete;
+        environment& operator=(environment&&) = delete;
 
         // POSIX.1
-        const string& pwd() const;
-        string& pwd();
+        const string& get_pwd() const;
 
-        const string& path() const;
-        string& path();
+        const string& get_path() const;
     private:
+        environment();
+
+
+        //environment variables
         string pwd;
         string path;
 }
