@@ -20,8 +20,12 @@
 #pragma once
 
 #include <string>
+#include <cstddef>
+
+#include <unistd.h>
 
 using std::string;
+using std::size_t;
 
 class environment
 {
@@ -34,15 +38,106 @@ class environment
         environment& operator=(const environment&) = delete;
         environment& operator=(environment&&) = delete;
 
-        // POSIX.1
-        const string& get_pwd() const;
+    /* POSIX environmental variables */
 
-        const string& get_path() const;
+        const string& pwd() const;
+        string& pwd();
+
+        const string& path() const;
+        string& path();
+
+        const string& home() const;
+        string& home();
+
+        const string& tmpdir() const;
+        string& tmpdir();
+
+        const string& tz() const;
+        string& tz();
+
+        const size_t columns() const;
+        size_t& columns();
+        
+        const size_t lines() const;
+        size_t& lines();
+
+        const string& shell() const;
+        string& shell();
+
+        const string& term() const;
+        string& term();
+
+        const string& logname() const;
+        string& logname();
+
+        const string& lang() const;
+        string& lang();
+
+        const string& lc_all() const;
+        string& lc_all();
+        
+        const string& lc_collate() const;
+        string& lc_collate();
+
+        const string& lc_ctype() const;
+        string& lc_ctype();
+
+        const string& lc_messages() const;
+        string& lc_messages();
+
+        const string& lc_monetary() const;
+        string& lc_monetary();
+
+        const string& lc_numeric() const;
+        string& lc_numeric();
+
+        const string& lc_time() const;
+        string& lc_time();
+
+        const string& nlspath() const;
+        string& nlspath();
+
+#ifdef _XOPEN_UNIX
+        const string& msgverb() const;
+        string& msgverb();
+
+        const string& datemsk() const;
+        string& datemsk();
+#endif
+
     private:
         environment();
 
-
-        //environment variables
+    /* POSIX environment variables 
+     * for more information, see http://pubs.opengroup.org/onlinepubs/9699919799.2018edition/
+     */
         string pwd;
         string path;
+        string home;
+        string tmpdir;
+        string tz;          // timezone
+
+        // terminal related
+        size_t columns;     // terminal width
+        size_t lines;       // terminal height
+        string shell;
+        string term;
+        string logname;
+
+        //internalization related
+        string lang;
+        string lc_all;
+        string lc_collate;  // for collation
+        string lc_ctype;    // character classification
+        string lc_messages; // locale for messages
+        string lc_monetary;
+        string lc_numeric;
+        string lc_time;     // date/time formatting
+        string nlspath;
+
+// if the system conforms to XSI
+#ifdef _XOPEN_UNIX
+        string msgverb;
+        string datemsk;
+#endif
 }
