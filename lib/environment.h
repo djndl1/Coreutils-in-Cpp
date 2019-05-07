@@ -8,7 +8,7 @@
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    Foobar is distributed in the hope that it will be useful,
+    Coreutils in C++ is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
@@ -19,18 +19,17 @@
 
 #pragma once
 
-#include <string>
 #include <cstddef>
+#include <vector>
 
-#include <unistd.h>
+class std::string;
 
-using std::string;
 using std::size_t;
 
 class environment
 {
     public:
-        static environment& get_env();
+        static environment& access_env();
 
         // these constructors and assignment operators are not needed for a singleton
         environment(const environment&) = delete;
@@ -40,69 +39,69 @@ class environment
 
     /* POSIX environmental variables */
 
-        const string& pwd() const;
-        string& pwd();
+        const std::string& pwd() const;
+        void set_pwd(std::string&);
 
-        const string& path() const;
-        string& path();
+        const std::string& path() const;
+        void set_path(std::string&);
 
-        const string& home() const;
-        string& home();
+        const std::string& home() const;
+        void set_home(std::string&);
 
-        const string& tmpdir() const;
-        string& tmpdir();
+        const std::string& tmpdir() const;
+        void set_tmpdir(std::string&);
 
-        const string& tz() const;
-        string& tz();
+        const std::string& tz() const;
+        void set_tz(std::string&);
 
         const size_t columns() const;
-        size_t& columns();
+        void set_columns(std::string&);
         
         const size_t lines() const;
-        size_t& lines();
+        void set_lines(std::string&);
 
-        const string& shell() const;
-        string& shell();
+        const std::string& shell() const;
+        void set_shell(std::string&);
 
-        const string& term() const;
-        string& term();
+        const std::string& term() const;
+        void set_term(std::string&);
 
-        const string& logname() const;
-        string& logname();
+        const std::string& logname() const;
+        void set_logname(std::string&);
 
-        const string& lang() const;
-        string& lang();
+        const std::string& lang() const;
+        void set_lang(std::string&);
 
-        const string& lc_all() const;
-        string& lc_all();
+        const std::string& lc_all() const;
+        void set_lc_all(std::string&);
         
-        const string& lc_collate() const;
-        string& lc_collate();
+        const std::string& lc_collate() const;
+        void set_lc_ctype(std::string&);
 
-        const string& lc_ctype() const;
-        string& lc_ctype();
+        const std::string& lc_ctype() const;
+        void set_lc_ctype(std::string&);
 
-        const string& lc_messages() const;
-        string& lc_messages();
+        const std::string& lc_messages() const;
+        void set_lc_messages(std::string&);
 
-        const string& lc_monetary() const;
-        string& lc_monetary();
+        const std::string& lc_monetary() const;
+        void set_lc_monetary(std::string&);
 
-        const string& lc_numeric() const;
-        string& lc_numeric();
+        const std::string& lc_numeric() const;
+        void set_lc_numeric(std::string&);
 
-        const string& lc_time() const;
-        string& lc_time();
+        const std::string& lc_time() const;
+        void set_lc_time(std::string&);
 
-        const string& nlspath() const;
-        string& nlspath();
+        const std::string& nlspath() const;
+        void set_nlspath(std::string&);
 
 #ifdef _XOPEN_UNIX
-        const string& msgverb() const;
-        string& msgverb();
+        const std::string& msgverb() const;
+        void set_msgverb(std::string&);
 
-        const string& datemsk() const;
-        string& datemsk();
+        const std::string& datemsk() const;
+        void set_datemsk(std::string&);
 #endif
 
     private:
@@ -111,33 +110,35 @@ class environment
     /* POSIX environment variables 
      * for more information, see http://pubs.opengroup.org/onlinepubs/9699919799.2018edition/
      */
-        string pwd;
-        string path;
-        string home;
-        string tmpdir;
-        string tz;          // timezone
+        std::string pwd;
+        std::string path;
+        std::string home;
+        std::string tmpdir;
+        std::string tz;          // timezone
 
         // terminal related
         size_t columns;     // terminal width
         size_t lines;       // terminal height
-        string shell;
-        string term;
-        string logname;
+        std::string shell;
+        std::string term;
+        std::string logname;
 
         //internalization related
-        string lang;
-        string lc_all;
-        string lc_collate;  // for collation
-        string lc_ctype;    // character classification
-        string lc_messages; // locale for messages
-        string lc_monetary;
-        string lc_numeric;
-        string lc_time;     // date/time formatting
-        string nlspath;
+        std::string lang;
+        std::string lc_all;
+        std::string lc_collate;  // for collation
+        std::string lc_ctype;    // character classification
+        std::string lc_messages; // locale for messages
+        std::string lc_monetary;
+        std::string lc_numeric;
+        std::string lc_time;     // date/time formatting
+        std::string nlspath;
 
 // if the system conforms to XSI
 #ifdef _XOPEN_UNIX
-        string msgverb;
-        string datemsk;
+        std::string msgverb;
+        std::string datemsk;
 #endif
+
+        const 
 }

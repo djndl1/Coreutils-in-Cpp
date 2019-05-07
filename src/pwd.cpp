@@ -46,7 +46,7 @@ string cxx_getcwd(void)
 string pwd(vector<string> args)
 {
     string pwd = cxx_getcwd();
-    string pwd_env = environment::get_env().get_pwd();
+    string pwd_env = environment::access_env().pwd();
 
     // if logical path is pecified "-P"
     bool logical_flag = true;
