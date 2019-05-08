@@ -20,9 +20,39 @@
 #include "environment.h"
 
 #include <cstdlib>
-#include <string>
 
 using std::string;
+using std::vector;
+
+const vector<string> env_names = {
+    "PWD",
+    "PATH",
+    "HOME",
+    "TMPDIR",
+    "TZ",
+    "COLUMNS",
+    "LINES",
+    "SHELL",
+    "TERM",
+    "LOGNAME",
+    "LANG",
+    "LC_ALL",
+    "LC_COLLATE",
+    "LC_CTYPE",
+    "LC_MESSAGE",
+    "LC_MONETARY",
+    "LC_NUMERIC",
+    "LC_TIME",
+    "NLSPTH",
+
+#ifdef _XOPEN_UNIX
+    "MSGVERB",
+    "DATEMSK"
+#endif
+};
+
+
+
 
 inline environment& 
 environment::access_env()

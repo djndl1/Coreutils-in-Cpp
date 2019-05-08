@@ -21,8 +21,8 @@
 
 #include <cstddef>
 #include <vector>
-
-class std::string;
+#include <string>
+#include <map>
 
 using std::size_t;
 
@@ -37,7 +37,7 @@ class environment
         environment& operator=(const environment&) = delete;
         environment& operator=(environment&&) = delete;
 
-    /* POSIX environmental variables */
+    /* POSIX environmental variables getters and setters*/
 
         const std::string& pwd() const;
         void set_pwd(std::string&);
@@ -54,10 +54,10 @@ class environment
         const std::string& tz() const;
         void set_tz(std::string&);
 
-        const size_t columns() const;
+        const std::string& columns() const;
         void set_columns(std::string&);
         
-        const size_t lines() const;
+        const std::string& lines() const;
         void set_lines(std::string&);
 
         const std::string& shell() const;
@@ -110,35 +110,8 @@ class environment
     /* POSIX environment variables 
      * for more information, see http://pubs.opengroup.org/onlinepubs/9699919799.2018edition/
      */
-        std::string pwd;
-        std::string path;
-        std::string home;
-        std::string tmpdir;
-        std::string tz;          // timezone
+        // environment variables 
+        std::vector<std::map<std::string, std::string>> envs;
 
-        // terminal related
-        size_t columns;     // terminal width
-        size_t lines;       // terminal height
-        std::string shell;
-        std::string term;
-        std::string logname;
-
-        //internalization related
-        std::string lang;
-        std::string lc_all;
-        std::string lc_collate;  // for collation
-        std::string lc_ctype;    // character classification
-        std::string lc_messages; // locale for messages
-        std::string lc_monetary;
-        std::string lc_numeric;
-        std::string lc_time;     // date/time formatting
-        std::string nlspath;
-
-// if the system conforms to XSI
-#ifdef _XOPEN_UNIX
-        std::string msgverb;
-        std::string datemsk;
-#endif
-
-        const 
-}
+        const std::vector<std::string> env_names;
+};
