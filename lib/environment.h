@@ -76,7 +76,7 @@ class environment
         void set_lc_all(std::string&);
         
         const std::string& lc_collate() const;
-        void set_lc_ctype(std::string&);
+        void set_lc_collate(std::string&);
 
         const std::string& lc_ctype() const;
         void set_lc_ctype(std::string&);
